@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<component
+    name="com.sharplabs.clouddesk.platform.comment.workflow.notification.service.NotificationContrib">
+
+    <require>org.nuxeo.ecm.platform.comment.workflow.notification.service.NotificationContrib</require>
+    <require>org.nuxeo.ecm.platform.notification.service.NotificationContrib</require>
+    
+  
+  <extension
+      target="org.nuxeo.ecm.platform.ec.notification.service.NotificationService"
+      point="notifications">
+
+    <notification name="CommentPublication" channel="email" enabled="false" availableIn="Workspace"
+      autoSubscribed="false" template="comment" subject="Comment published" label="notifications.name.Comments">
+      <event name="commentPublished"/>
+    </notification>
+    
+     <notification name="Creation" channel="email" enabled="true" availableIn="Workspace"
+      autoSubscribed="false" template="modification" subject="${docTitle} has been created by ${author}" label="label.clouddesk.notifications.creation">
+      <event name="documentCreated"/>
+    </notification>
+   <notification name="Modification" channel="email" enabled="true" availableIn="Workspace"
+      autoSubscribed="false" template="modification" subject="${docTitle} has been modified by ${author}" label="label.clouddesk.notifications.modification">
+      <event name="documentModified"/>
+    </notification>
+     
+  </extension>
+  
+   
+ <extension
+    target="org.nuxeo.ecm.platform.ec.notification.service.NotificationService"
+    point="templates">
+    <template name="comment" src="templates/comment.ftl" />
+    <template name="note" src="templates/notes.ftl" />
+     <template name="modification" src="templates/modification.ftl" />
+    
+  </extension>
+
+</component>
+
+
+

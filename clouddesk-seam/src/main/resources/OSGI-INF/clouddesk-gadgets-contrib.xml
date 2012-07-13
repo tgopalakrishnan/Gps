@@ -1,0 +1,338 @@
+<?xml version="1.0"?>
+<component name="com.sharp.clouddesk.social.workspace.gadgets"
+  version="1.0">
+<require>org.nuxeo.ecm.social.workspace.gadgets</require>
+<require>org.nuxeo.ecm.social.mini.message.gadgets</require>
+<require>org.nuxeo.ecm.rating.gadgets</require>
+<require>org.nuxeo.ecm.social.user.activity.stream.gadgets</require>
+<require>org.nuxeo.ecm.wall.gadgets</require>
+<require>org.nuxeo.opensocial.gadgets.coregadgets</require>
+<require>org.nuxeo.ecm.agenda.gadgets</require>
+
+  <extension target="org.nuxeo.opensocial.gadgets.service"
+    point="gadget">
+
+    <internalGadget name="articles" disabled="true">
+      <mountPoint>/articles</mountPoint>
+      <entryPoint>articles.xml</entryPoint>
+      <category>gadget.category.social.workspace.private</category>
+      <icon>gadget-article.png</icon>
+    </internalGadget>
+
+    <internalGadget name="publicarticles" disabled="true">
+      <mountPoint>/publicarticles</mountPoint>
+      <entryPoint>publicarticles.xml</entryPoint>
+      <category>gadget.category.social.workspace.public</category>
+      <icon>gadget-article.png</icon>
+    </internalGadget>
+
+    <internalGadget name="news" disabled="true">
+      <mountPoint>/news</mountPoint>
+      <entryPoint>news.xml</entryPoint>
+      <category>gadget.category.social.workspace.public</category>
+      <icon>gadget-news.png</icon>
+    </internalGadget>
+
+    <internalGadget name="join" disabled="true">
+      <mountPoint>/join</mountPoint>
+      <directory>join</directory>
+      <entryPoint>join.xml</entryPoint>
+      <category>gadget.category.social.workspace.public</category>
+      <icon>gadget-join.png</icon>
+    </internalGadget>
+
+    <internalGadget name="library" disabled="true">
+      <mountPoint>/library</mountPoint>
+      <directory>library</directory>
+      <entryPoint>library.xml</entryPoint>
+      <category>gadget.category.social.workspace.private</category>
+      <icon>gadget-library.png</icon>
+    </internalGadget>
+
+    <internalGadget name="members" disabled="true">
+      <mountPoint>/members</mountPoint>
+      <directory>members</directory>
+      <entryPoint>members.xml</entryPoint>
+      <category>gadget.category.social.workspace.private</category>
+      <icon>members.png</icon>
+    </internalGadget>
+
+    <internalGadget name="usersocialworkspaces" disabled="true">
+      <mountPoint>/usersocialworkspaces</mountPoint>
+      <directory>usersocialworkspaces</directory>
+      <entryPoint>usersocialworkspaces.xml</entryPoint>
+      <category>gadget.category.social.workspace.private</category>
+      <icon>user_socialworkspaces.png</icon>
+    </internalGadget>
+
+    <internalGadget name="publicdocuments" disabled="true">
+      <mountPoint>/publicdocuments</mountPoint>
+      <directory>publicdocuments</directory>
+      <entryPoint>publicdocuments.xml</entryPoint>
+      <category>gadget.category.social.workspace.public</category>
+      <icon>publicdocuments.png</icon>
+    </internalGadget>
+
+    <internalGadget name="publicsocialworkspaces" disabled="true">
+      <mountPoint>/publicsocialworkspaces</mountPoint>
+      <directory>publicsocialworkspaces</directory>
+      <entryPoint>publicsocialworkspaces.xml</entryPoint>
+      <category>gadget.category.social.workspace.public</category>
+      <icon>public_social_workspaces.png</icon>
+    </internalGadget>
+
+    <internalGadget name="socialworkspaceactivitystream"
+      disabled="true">
+      <mountPoint>/socialworkspaceactivitystream</mountPoint>
+      <directory>socialworkspaceactivitystream</directory>
+      <entryPoint>socialworkspaceactivitystream.xml</entryPoint>
+      <category>gadget.category.social.workspace.private</category>
+      <icon>gadget-socialworkspaceactivitystream.png</icon>
+    </internalGadget>
+
+    <internalGadget name="socialworkspaceminimessages"
+      disabled="true">
+      <mountPoint>/socialworkspaceminimessages</mountPoint>
+      <directory>socialworkspaceminimessages</directory>
+      <entryPoint>socialworkspaceminimessages.xml</entryPoint>
+      <category>gadget.category.social.workspace.private</category>
+      <icon>gadget-socialworkspaceminimessages.png</icon>
+    </internalGadget>
+<!-- addeded -->
+  <internalGadget name="minimessages" disabled="true">
+      <mountPoint>/minimessages</mountPoint>
+      <entryPoint>minimessages.xml</entryPoint>
+      <category>Nuxeo</category>
+      <icon>gadget-minimessages.png</icon>
+    </internalGadget>
+    
+     <internalGadget name="like" disabled="true">
+      <mountPoint>/like</mountPoint>
+      <entryPoint>like.xml</entryPoint>
+      <category>Nuxeo</category>
+      <icon>gadget-like.png</icon>
+    </internalGadget>
+
+    <internalGadget name="mostLiked" disabled="true">
+      <mountPoint>/mostLiked</mountPoint>
+      <entryPoint>mostLiked.xml</entryPoint>
+      <category>Nuxeo</category>
+      <icon>gadget-like.png</icon>
+    </internalGadget>
+   
+   <internalGadget name="useractivitystream" disabled="true">
+      <mountPoint>/useractivitystream</mountPoint>
+      <entryPoint>useractivitystream.xml</entryPoint>
+      <category>Nuxeo</category>
+      <icon>gadget-useractivitystream.png</icon>
+    </internalGadget>
+    
+     <internalGadget name="wall" disabled="true">
+      <documentation>
+        This gadget displays a Wall for a given document
+        (document created / modified, messages, ...)
+
+        The following user preferences can be used to configure it:
+        - nuxeoTargetContextPath: the path of the document on which to
+        initialize the wall
+        - activityStreamName: the activity stream to use to retrieve the
+        configured list of activity verbs to get
+
+        How to include the wall gadget in a JSF context:
+        <code>
+          <div class="gadget-wall threeQuarterWidth"></div>
+          <script type="text/javascript">
+            jQuery('.gadget-wall').openSocialGadget({
+              baseURL: '#{baseURL}',
+              language: '#{localeSelector.language}',
+              gadgetDefs: [
+                { specUrl: '#{gadgetsBaseURL}/site/gadgets/wall/wall.xml',
+                  title: '',
+                  userPrefs: {
+                    nuxeoTargetContextPath: {
+                      value: '#{currentDocument.pathAsString}'
+                    },
+                    activityStreamName: {
+                      value: 'defaultWallActivityStream'
+                    }
+                  },
+                  displayTitleBar: false,
+                  width: '100%'
+                }
+              ]
+            });
+          </script>
+        </code>
+
+        How to include the wall gadget in a WebEngine page:
+        <code>
+          <link rel="stylesheet" href="${contextPath}/css/opensocial/light-container-gadgets.css" />
+          <script type="text/javascript" src="${contextPath}/opensocial/gadgets/js/rpc.js?c=1"></script>
+          <script type="text/javascript" src="${contextPath}/js/?scripts=jquery.js|opensocial/cookies.js|opensocial/util.js|opensocial/gadgets.js|opensocial/cookiebaseduserprefstore.js|opensocial/jquery.opensocial.gadget.js"></script>
+
+          <div class="gadget-wall gadgets-gadget-chrome"></div>
+          <script type="text/javascript">
+            $('.gadget-wall').openSocialGadget({
+              baseURL: '${contextPath}' + '/',
+              language: '${Context.locale.language}',
+              gadgetDefs: [{
+                specUrl : '${Runtime.getProperty('nuxeo.loopback.url')}/site/gadgets/wall/wall.xml',
+                userPrefs: {
+                  nuxeoTargetContextPath: {
+                    value: '${doc.pathAsString}'
+                  },
+                  activityStreamName: {
+                    value: 'defaultWallActivityStream'
+                  }
+                },
+                displayTitleBar: false,
+                width: '100%'
+              }]
+            });
+          </script>
+        </code>
+      </documentation>
+
+      <mountPoint>/wall</mountPoint>
+      <entryPoint>wall.xml</entryPoint>
+      <category>Nuxeo</category>
+      <icon>gadget-wall.png</icon>
+    </internalGadget>
+    
+    
+<!--     core gadgets -->
+
+ <!-- Nuxeo -->
+    <internalGadget name="quicksearch" disabled="true">
+      <mountPoint>/quicksearch</mountPoint>
+      <entryPoint>quicksearch.xml</entryPoint>
+      <category>Nuxeo</category>
+      <icon>gadget-quicksearch.png</icon>
+    </internalGadget>
+    <internalGadget name="tasks" disabled="true">
+      <mountPoint>/tasks</mountPoint>
+      <entryPoint>tasks.xml</entryPoint>
+      <category>Nuxeo</category>
+      <icon>my_tasks.png</icon>
+    </internalGadget>
+    <internalGadget name="waitingfor" disabled="true">
+      <mountPoint>/waitingfor</mountPoint>
+      <entryPoint>waitingfor.xml</entryPoint>
+      <category>Nuxeo</category>
+      <icon>waiting_for.png</icon>
+    </internalGadget>
+    <internalGadget name="userworkspaces" disabled="true">
+      <mountPoint>/userworkspaces</mountPoint>
+      <entryPoint>userworkspaces.xml</entryPoint>
+      <category>Nuxeo</category>
+      <icon>user_workspace.png</icon>
+    </internalGadget>
+    <internalGadget name="userdocuments" disabled="true">
+      <mountPoint>/userdocuments</mountPoint>
+      <entryPoint>userdocuments.xml</entryPoint>
+      <category>Nuxeo</category>
+      <icon>note_64.png</icon>
+    </internalGadget>
+    <internalGadget name="usersites" disabled="true">
+      <mountPoint>/usersites</mountPoint>
+      <entryPoint>usersites.xml</entryPoint>
+      <category>Nuxeo</category>
+      <icon>user_sites.png</icon>
+    </internalGadget>
+    <internalGadget name="lastpublisheddocuments"  disabled="true">
+      <mountPoint>/lastpublisheddocuments</mountPoint>
+      <entryPoint>lastpublisheddocuments.xml</entryPoint>
+      <category>Nuxeo</category>
+      <icon>last_published_document.png</icon>
+    </internalGadget>
+    <internalGadget name="lastdocuments" disabled="true">
+      <mountPoint>/lastdocuments</mountPoint>
+      <entryPoint>lastdocuments.xml</entryPoint>
+      <category>Nuxeo</category>
+      <icon>last_document.png</icon>
+    </internalGadget>
+    <internalGadget name="userdeleteddocuments" disabled="true">
+      <mountPoint>/userdeleteddocuments</mountPoint>
+      <entryPoint>userdeleteddocuments.xml</entryPoint>
+      <category>Nuxeo</category>
+      <icon>user_deleted_documents.png</icon>
+    </internalGadget>
+
+    <!-- Monitoring -->
+    <internalGadget name="httpMonitoring" disabled="true">
+      <mountPoint>/httpMonitoring</mountPoint>
+      <entryPoint>httpMonitoring.xml</entryPoint>
+      <category>gadget.category.monitoring</category>
+      <icon>monitoring.png</icon>
+    </internalGadget>
+
+    <internalGadget name="eventMonitoring" disabled="true">
+      <mountPoint>/eventMonitoring</mountPoint>
+      <entryPoint>eventMonitoring.xml</entryPoint>
+      <category>gadget.category.monitoring</category>
+      <icon>monitoring.png</icon>
+    </internalGadget>
+
+    <!-- Media -->
+    <internalGadget name="photo" disabled="true">
+      <mountPoint>/photo</mountPoint>
+      <entryPoint>photo.xml</entryPoint>
+      <category>gadget.category.media</category>
+      <icon>photo_icon.png</icon>
+    </internalGadget>
+    <internalGadget name="flash" disabled="true">
+      <mountPoint>/flash</mountPoint>
+      <entryPoint>flash.xml</entryPoint>
+      <category>gadget.category.media</category>
+      <icon>flash_icon.png</icon>
+    </internalGadget>
+    <internalGadget name="video" disabled="true">
+      <mountPoint>/video</mountPoint>
+      <entryPoint>video.xml</entryPoint>
+      <category>gadget.category.media</category>
+      <icon>video_icon.png</icon>
+    </internalGadget>
+
+    <!-- Utilities -->
+    <internalGadget name="meteo" disabled="true">
+      <mountPoint>/meteo</mountPoint>
+      <entryPoint>meteo.xml</entryPoint>
+      <category>gadget.category.utilities</category>
+      <icon>meteo_icon.png</icon>
+    </internalGadget>
+    <internalGadget name="bookmarks" disabled="true">
+      <mountPoint>/bookmarks</mountPoint>
+      <entryPoint>bookmarks.xml</entryPoint>
+      <category>gadget.category.utilities</category>
+      <icon>bookmarks_icon.png</icon>
+    </internalGadget>
+    <internalGadget name="richtext" disabled="true">
+      <mountPoint>/richtext</mountPoint>
+      <entryPoint>richtext.xml</entryPoint>
+      <category>gadget.category.utilities</category>
+      <icon>richtext_icon.png</icon>
+    </internalGadget>
+    <internalGadget name="todolist" disabled="true">
+      <mountPoint>/todolist</mountPoint>
+      <entryPoint>toDoList.xml</entryPoint>
+      <category>gadget.category.utilities</category>
+      <icon>todolist_icon.png</icon>
+    </internalGadget>
+    <internalGadget name="note" disabled="true">
+      <mountPoint>/note</mountPoint>
+      <entryPoint>note.xml</entryPoint>
+      <category>gadget.category.utilities</category>
+      <icon>note_icon.png</icon>
+    </internalGadget>
+
+    
+     <internalGadget name="agenda" disabled="true">
+      <mountPoint>/agenda</mountPoint>
+      <entryPoint>agenda.xml</entryPoint>
+      <category>gadget.category.utilities</category>
+      <icon>gadget-agenda.png</icon>
+    </internalGadget>
+    
+    
+  </extension>
+</component>

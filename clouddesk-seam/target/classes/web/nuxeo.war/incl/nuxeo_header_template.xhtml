@@ -1,0 +1,171 @@
+<div xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<ui:insert name="header_admin_message">
+		<div class="header_admin_messages">
+			<c:if test="#{adminMessageActivated}">
+				<div
+					style="text-align: center; padding: 5px 5px 5px 25px; background-color: #fff9B4; font: normal 12px Arial, sans-serif;">
+					<h:outputText value="#{adminMessage}" />
+				</div>
+			</c:if>
+		</div>
+	</ui:insert>
+	<ui:insert name="header_search">
+		<div class="userSearchBlock">
+			<h:form id="userServicesSearchForm">
+				<div class="searchService">
+					<c:if test="#{userServicesContext.searchEnabled}">
+						<c:forEach var="simpleSearchActions"
+							items="#{webActions.getActionsList('SEARCH_BOX_TEMPLATE')}"
+							id="#{widget.id}_simpleSearchActions">
+							<ui:include src="#{simpleSearchActions.link}" />
+						</c:forEach>
+						
+						<c:if test="#{empty webActions.getActionsList('SEARCH_BOX_TEMPLATE')}">
+							<h:inputText
+								value="#{documentSearchActions.simpleSearchKeywords}" size="15"
+								class="directoryFilter"
+								onkeydown="if (event.keyCode == 13) {Element.next(Element.next(this)).select();} else return true;"
+								id="simpleSearchKeywordsInput" required="true"
+								requiredMessage="#{messages['feedback.search.noKeywords']}"
+								validator="#{documentSearchActions.validateSimpleSearchKeywords}" />
+						</c:if>
+						<nxu:set var="actions"
+							value="#{webActions.getActionsList('SEARCH_ACTIONS')}"
+							cache="true">
+
+							<nxu:dataList layout="simple" var="action" value="#{actions}"
+								id="searchActionsTable">
+
+								<div align="right" class="advancedSearchLink">
+									<nxh:commandLink action="#{action.getLink()}"
+										onclick="#{action.confirm}" value="#{messages[action.label]}"
+										immediate="true" id="searchActionsButton" />
+								</div>
+							</nxu:dataList>
+						</nxu:set>
+
+					</c:if>
+				</div>
+			</h:form>
+		</div>
+
+	</ui:insert>
+	<div class="userServicesBlock">
+		<h:form id="userServicesForm">
+			<ui:insert name="header_main_tabs">
+				<div class="mainTabs">
+					<ul>
+						<nxu:dataList var="mainTab"
+							value="#{webActions.getActionsList('CLOUDDESK_MAIN_TABS')}">
+							<li
+								class="#{nxu:test(webActions.getCurrentTabId('CLOUDDESK_MAIN_TABS') == mainTab.id, 'selected', '')}">
+								<nxd:restDocumentLink
+									document="#{cloudDeskMainTabsActions.getDocumentForTab(mainTab)}"
+									view="#{mainTabsActions.getViewFor(mainTab)}"
+									pattern="#{mainTabsActions.getPatternFor(mainTab)}"
+									addTabInfo="false" tabs="CLOUDDESK_MAIN_TABS:#{mainTab.id}">
+									<h:outputText value="#{messages[mainTab.label]}" />
+								</nxd:restDocumentLink>
+							</li>
+						</nxu:dataList>
+						<li><nxu:set var="menuActions"
+								value="#{webActions.getActionsList('USER_MENU_ACTIONS')}"
+								cache="true">
+								<nxu:set var="oldActions"
+									value="#{webActions.getActionsList('USER_SERVICES')}"
+									cache="true">
+									<c:if test="#{not empty menuActions or not empty oldActions}">
+										<!-- <ul> -->
+											<c:forEach var="action" items="#{menuActions}">
+												<!-- <li> --><h:outputLink value="#{baseURL}#{action.link}"
+														rendered="#{!(fn:startsWith(action.link,'#'))}"
+														id="menuActionLink_#{action.id}">
+														<h:outputText value="#{messages[action.label]}" />
+													</h:outputLink><!-- </li> -->
+											</c:forEach>
+
+											<c:forEach var="action" items="#{oldActions}">
+												<!-- <li> --><nxh:commandLink action="#{action.getLink()}"
+														immediate="#{action.immediate}"
+														onclick="#{action.confirm}"
+														id="userServicesCommand_#{action.id}">
+														<h:outputText value="#{messages[action.label]}" />
+													</nxh:commandLink><!-- </li> -->
+											</c:forEach>
+										<!-- </ul> -->
+									</c:if>
+								</nxu:set>
+							</nxu:set>
+						</li>
+					</ul>
+
+					<!-- <h:outputText value="Welcome.  #{messages['label.loggedAsUser']}" /> -->
+				</div>
+
+			</ui:insert>
+			
+			<ui:insert name="header_user_menu_actions">
+				<div>
+					<ul class="userMenuList">
+
+					</ul>
+				</div>
+			</ui:insert>
+			<ui:insert name="header_user_actions">
+				<div class="userActions">
+
+					<nxu:set var="actions"
+						value="#{webActions.getActionsList('USER_SERVICES_BOTTOM')}"
+						cache="true">
+						<nxu:dataList layout="simple" var="action" value="#{actions}"
+							rowIndexVar="row" rowCountVar="rowCount"
+							id="userServicesBottomActionsTable">
+							<h:outputText value=" | " rendered="#{row!=0 and row!=rowCount}" />
+
+							<nxh:commandLink action="#{action.getLink()}"
+								rendered="#{fn:startsWith(action.link,'#')}"
+								immediate="#{action.immediate}" onclick="#{action.confirm}"
+								id="userServicesBottomActionCommandLink">
+								<h:outputText value="#{messages[action.label]}" />
+							</nxh:commandLink>
+
+							<h:outputLink value="#{baseURL}#{action.link}"
+								rendered="#{!(fn:startsWith(action.link,'#'))}"
+								id="userServicesBottomActionLink">
+								<h:outputText value="#{messages[action.label]}" />
+							</h:outputLink>
+
+						</nxu:dataList>
+					</nxu:set>
+				</div>
+			</ui:insert>
+
+			<div class="searchService">
+				<nxu:set var="actions"
+					value="#{webActions.getActionsList('SEARCH_LINKS')}" cache="true">
+					<nxu:dataList layout="simple" var="action" value="#{actions}"
+						rowIndexVar="row" rowCountVar="rowCount"
+						id="searchLinksActionsTable">
+						<h:outputText value=" | " rendered="#{row!=rowCount}" />
+						<h:outputLink value="#{baseURL}#{action.getLink()}"
+							id="searchLinksActionLink">
+							<h:outputText value="#{messages[action.label]}" />
+						</h:outputLink>
+					</nxu:dataList>
+				</nxu:set>
+			</div>
+
+			<div class="clear"></div>
+		</h:form>
+	</div>
+
+</div>

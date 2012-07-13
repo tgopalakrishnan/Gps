@@ -1,0 +1,53 @@
+<f:subview xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<c:choose>
+		<c:when test="#{connectUpdateStatusInfo.registered}">
+			<c:if test="#{currentNuxeoPrincipal!=null and currentNuxeoPrincipal.isAdministrator()}">
+				<script>
+         <!--
+         jQuery(document).ready(function(){
+             var script = document.createElement( 'script' );
+             script.type = 'text/javascript';
+             script.src = '#{connectUpdateStatusInfo.feedUrl}';
+             jQuery("body").append(script);
+          });
+         function displayConnectUpdateStatus(registrationStatus) {
+           if (registrationStatus.registered!=true) {
+                 jQuery(document).ready(function(){
+                     if (registrationStatus.nbPkgs>0) {
+                       jQuery("#connectHotFixesCount").html(""+registrationStatus.nbPkgs);
+                       jQuery("#connectHotFixesCountMsg").css("display","block");
+                     }
+                     jQuery("#connectExpiredMessageBanner").css("display","block");
+                 });
+           }
+         }
+         -->
+         </script>
+			</c:if>
+		</c:when>
+		<c:otherwise>
+			<script>
+        <!--
+        jQuery(document).ready(function(){
+            var script = document.createElement( 'script' );
+            script.type = 'text/javascript';
+            script.src = '#{connectUpdateStatusInfo.feedUrl}';
+            jQuery("body").append(script);
+        });
+        function displayConnectUpdateStatus(nbPkg) {
+                  jQuery(document).ready(function(){
+                  if (nbPkg>0) {
+                   jQuery("#connectHotFixesCount").html(""+nbPkg);
+                   jQuery("#connectHotFixesCountMsg").css("display","block");
+                  }
+                 });
+         }
+         -->
+        </script>
+		</c:otherwise>
+	</c:choose>
+</f:subview>

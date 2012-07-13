@@ -1,0 +1,54 @@
+<f:subview id="#{widget.id}" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html"
+	xmlns:nxl="http://nuxeo.org/nxforms/layout"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:nxp="http://nuxeo.org/nxweb/pdf">
+	<nxu:set var="typeLabel" value="#{nxd:typeLabel(field)}">
+		<nxu:set var="label"
+			value="#{empty typeLabel ? field_2 : messages[typeLabel]}">
+			<c:if test="#{nxl:isLikePlainMode(widget.mode)}">#{nxd:titleOrId(field_0)}</c:if>
+			<c:if test="#{nxl:isLikeViewMode(widget.mode)}">
+
+				<div class="popupTarget dropout" docRef="#{field_1}">
+					<table width="100%" cellspacing="0" cellpadding="0" border="0">
+						<tr>
+							<td width="50%">
+								<nxd:restDocumentLink document="#{field_0}"
+				      				tab="#{widgetProperty_tab}" subTab="#{widgetProperty_subTab}">
+				      				<span id="title_#{field_1}" title="#{label}">
+				        			<nxu:graphicImage value="/icons/properties_icon.png"
+											style="vertical-align:middle"
+											alt="#{messages['permalink.properties']}"
+											title="#{messages['permalink.properties']}" />
+				      				</span>
+				    			</nxd:restDocumentLink>
+							</td>
+							
+							<td width="50%">
+								<nxd:restDocumentLink document="#{field_0}" newConversation="true"
+									target="_blank" tab="#{widgetProperty_tab}"
+									subTab="#{widgetProperty_subTab}">
+									<nxu:graphicImage value="/icons/external.gif" 
+										style="vertical-align:middle"
+										alt="#{messages['permalink.newTab']}"
+										title="#{messages['permalink.newTab']}" />
+								</nxd:restDocumentLink>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</c:if>
+			<c:if test="#{widget.mode == 'pdf'}">
+				<nxp:html>#{nxd:titleOrId(field_0)}</nxp:html>
+			</c:if>
+		</nxu:set>
+	</nxu:set>
+</f:subview>
+
+
+
+
+

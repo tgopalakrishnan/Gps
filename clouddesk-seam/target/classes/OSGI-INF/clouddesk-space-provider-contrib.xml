@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<component name="com.sharplabs.clouddesk.spaceprovider">
+
+  <require>org.nuxeo.ecm.social.workspace.spaceprovider</require>
+  <require>org.nuxeo.ecm.user.center.dashboard.opensocial.spaceprovider</require>
+
+  <extension target="org.nuxeo.ecm.spaces.core.spacemanager.service"
+    point="spaceProviders">
+
+    <spaceProvider name="clouddefaultDashboardSpaceProvider">
+      <class>
+        com.sharplabs.clouddesk.spaceprovider.CloudDeskDefaultDashboardSpaceProvider
+      </class>
+    </spaceProvider>
+
+  </extension>
+
+</component>

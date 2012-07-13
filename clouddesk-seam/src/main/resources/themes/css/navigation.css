@@ -1,0 +1,304 @@
+/*
+Navigation tabs, subtabs, and back links
+Header links to navigate between pages are styled in header.css
+=Tabs -> default tabs and subtabs
+=Navigation controls -> used to paginate document lists
+=Back Arrow -> link to go back to the previous view
+author: lkemen@nuxeo.com
+*/
+
+/* =Tabs */
+.tabsBarHead
+{
+	height:38px;
+	border-bottom: 2px solid #acacac; /* #dedcdd */
+}
+
+.tabsBar { /* background: none "neutral.medium (__FLAVOR__ background)";
+  	border-width: 1px; border-style: solid;
+  	border-color: "";
+  	border-radius: 3px;
+  	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 10px 8px #fff inset; */
+	float: right;
+	margin-top: .4em;
+	text-transform: uppercase;
+	color: #646464;
+	font-weight: bold;
+	font-size: 13px;
+	text-decoration: none;
+	/* width: 100% */
+}
+
+.tabsBar ul {
+	list-style: none outside none;
+	margin: 0;
+	padding: 0 1em 0 0
+}
+
+.tabsBar li {
+	float: left;
+	padding: 0
+}
+
+.tabsBar a,.tabsBar a:visited {
+	background: transparent;
+	border-width: 1px;
+	border-style: none solid none none;
+	border-color: "neutral.lighter (__FLAVOR__ border)";
+	/*color: "link (__FLAVOR__ color)";*/
+	color : #979797;
+	display: block;
+	float: left;
+	padding: .3em .5em .4em;
+	text-decoration: none;
+	text-shadow: 1px 1px 0 #fff;
+	text-decoration: none;
+}
+
+.tabsBar li.selected a,.tabsBar li a:hover,.tabsBar li.selected a:visited
+	{
+	/*background: none "color.major.stronger (__FLAVOR__ background)";*/
+	color: #4A4A4A;
+	/*text-shadow: 1px 1px 0 #000;*/
+	text-shadow : none;
+	text-decoration: none;
+	
+}
+
+.column .tabsBar {
+	border-style: solid solid none;
+	border-width: 1px;
+	border-color: "neutral.lighter (__FLAVOR__ border)";
+	border-radius: 0 0 0 0;
+	box-shadow: 0 0 0 transparent, 0 10px 8px #fff inset
+}
+
+.column .tabsBar li.selected a {
+	background-color: "tabs.selected (__FLAVOR__ background)";
+	color: "tabs.selected (__FLAVOR__ color)";
+	text-shadow: none
+
+}
+
+.subtabsBar {
+	/*background: none transparent;
+	border-style: none none solid;
+	border-width: 1px;
+	border-color: "subtabs.selected (__FLAVOR__ border)";
+	border-radius: 0;
+	box-shadow: 0 0 0 transparent;*/
+	color:#5B5B5B;
+	font-size: .9em;
+	margin-top: 1em;
+	font-weight: bold;
+}
+
+.subtabsBar li {
+	margin: 0 0 -0.1em .3em
+}
+
+.subtabsBar a,.subtabsBar a:visited {
+	/*background: none "color.major.light (__FLAVOR__ background)";
+	border-width: 1px;
+	border-style: solid;
+	border-color: "neutral.lighter (__FLAVOR__ border)";
+	border-radius: 2px 2px 0 0;
+	color: "link (__FLAVOR__ color)";*/
+	color:#939393;
+	padding: .19em .4em;
+	text-decoration: none;
+}
+
+.subtabsBar li.selected a,.subtabsBar li a:hover,.subtabsBar li.selected a:visited
+	{
+	/*background: none "subtabs.selected (__FLAVOR__ background)";
+	border-color: "subtabs.selected (__FLAVOR__ border)"
+		"subtabs.selected (__FLAVOR__ border)" "noborder (__FLAVOR__ border)";
+	border-style: solid;
+	border-width: 1px;
+	color: "subtabs.selected (__FLAVOR__ color)";*/
+	color:#5B5B5B;
+	padding: .2em .4em .3em;
+	text-shadow: none;
+}
+
+/* =Navigation controls */
+.pageNavigationControls,#pageNavigationControls {
+	border-width: 1px;
+	border-style: none none solid;
+	border-color: "neutral.lighter (__FLAVOR__ border)";
+	margin: 0 0 .4em;
+	padding: .2em 0 0;
+	text-align: center
+}
+
+.pageNavigationControls span,#pageNavigationControls span {
+	color: "gray.dark (__FLAVOR__ color)";
+	font-weight: bold;
+	margin: 1em .5em;
+	vertical-align: top
+}
+
+.pageNavigationControls input,#pageNavigationControls input {
+	border: medium none;
+	box-shadow: none;
+	margin-left: .4em
+}
+
+.pageNavigationControls input[disabled=disabled],#pageNavigationControls input[disabled=disabled]
+	{
+	cursor: default;
+	filter: alpha(opacity = 50);
+	opacity: .4
+}
+
+/* =Back Arrow */
+.directoryBack {
+	background: url("${basePath}/icons/arrow_left.gif") no-repeat scroll 3px
+		1px transparent;
+	padding: .2em .2em .2em 2em
+}
+
+
+/* ---------------------------- Right Side ---------------------------- */
+
+h3.summaryTitle {
+  border-width: 3px; border-style: none none double; border-color: "color.major.medium (__FLAVOR__ border)";
+  color: "black (__FLAVOR__ color)";
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0 0 .8em;
+  padding: 2em 0 .3em;
+  text-transform: uppercase 
+  }
+  
+.CDsummaryTitle {
+  	background-color: #DCDCDC;
+	height: 23px;
+	padding-top:7px;
+	width:100%;
+	color:#949494;
+	font-size: 10px;
+	text-transform: capitalize;
+	font-weight: normal;
+  }
+
+.CDSummary { float: left; padding: 1em 0; width: 100% }
+
+.GreyHeadingBg
+{
+	background-color: #DCDCDC;
+	height: 40px;
+	width:100%;
+	color:#949494;
+	font-size: 13px;
+	text-transform: capitalize;
+	font-weight: normal;
+}
+
+.Blueheading{
+	color:#0098ff;
+}
+
+.CDSummaryHeaders
+{
+	padding-left: 2em;
+}
+
+.CDSubHeading{
+	color:#010101;
+	font-weight: bold;	
+}
+
+.CDCommentsQuote
+{
+	color:#008bff;
+	padding:5px 10px 10px 10px;
+}
+
+.CDcommentActions { float: right; font-weight: bold; font-size: .8em; margin-right: .4em; padding: 2em }
+.CDcommentCreationDate { color:#010101; font-weight: normal }
+/*.CDcommentQuote { margin: .4em 0 }*/
+.CDcommentAuthor {
+  color:#010101;
+  font-weight: bold;
+  padding:10px 10px 5px 10px; }
+  
+ .CDFileStyleUn
+ {
+ 	text-decoration: underline;
+ 	color: #0085d4;
+ }
+  
+ 
+ /* ----------------------------- CLoudDesk Project Buttons ------------------------- */
+  
+  .CDBlueButtonBg
+{
+                /*background-image:url(../img/BlueButtonBg.png);
+                background-repeat:repeat-x;
+                background-position:left;*/
+                background-color:#44a7e3;
+                border:1px solid #2d9bdc;
+                color:#ffffff;
+                text-shadow: 1px 1px 3px #295d7d;
+                padding:0px 10px 0px 10px;
+                height:22px;
+                margin:0px 10px 0px 0px;
+}
+
+.CDGrayButtonBg
+{
+                     /*background-image:url(../img/GreyButtonBg.png);
+                background-repeat:repeat-x;
+                background-position:left;*/
+                background-color:#c9c9c9;
+                border:1px solid #acacac;
+                color:#000000;
+                text-shadow: 1px 1px 3px #dadada;
+                padding:0px 10px 0px 10px;
+                height:22px;
+}
+  
+
+/* ----------------------- Alternative Row Colors -------------------- */
+
+.dataRow {
+  background-color: #ececec;
+  padding : 2px;
+}
+.dataRowEven {
+  background-color:#EEEEFF;
+  padding : 2px;
+}
+
+.dataRowOdd { background-color: #ececec }
+
+.dataRowEven { background-color: #ffffff }
+
+.dataRowOdd:hover, .dataRowEven:hover {	background-color: "color.major.medium (__FLAVOR__ background)" }
+
+
+
+.GreydataRow {
+  background-color: white;
+  padding : 2px;
+}
+.GreydataRowEven {
+  background-color:#EEEEFF;
+  padding : 2px;
+}
+
+.GreydataRowwOdd { background-color: #ffffff }
+
+.GreydataRowEven { background-color: #ececec }
+
+.GreydataRowwOdd:hover, .GreydataRowEven:hover {background-color: "color.major.medium (__FLAVOR__ background)" }
+
+</* ----------------tabs content---------------- */
+
+
+
+
+
+

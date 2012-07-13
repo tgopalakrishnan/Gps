@@ -1,0 +1,124 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:nxu="http://nuxeo.org/nxweb/util"
+	xmlns:nxd="http://nuxeo.org/nxweb/document"
+	xmlns:nxh="http://nuxeo.org/nxweb/html">
+
+
+
+	<h3>
+		<h:form>
+			<h:commandLink
+				actionListener="#{commentManagerActions.toggleCreateForm}">
+				<!-- <h:graphicImage url="/icons/toggle_plus.png"
+					rendered="#{!commentManagerActions.showCreateForm}" />
+				<h:graphicImage url="/icons/toggle_minus.png"
+					rendered="#{commentManagerActions.showCreateForm}" />
+				<h:outputText value="#{messages['label.comments.add']}" /> -->
+
+			</h:commandLink>
+		</h:form>
+	</h3>
+
+		<h4 class="CDSubHeading"><h:outputText value="#{messages['label.comments.add']}" /></h4>
+
+	<h:form id="createForm"
+		rendered="#{ commentManagerActions.savedReplyCommentId == null}">
+			<ui:include src="/incl/create_comment_form.xhtml" />
+	</h:form>
+
+      <h4 class="CDSubHeading"><h:outputText value="#{messages['label.comments.log']}" /></h4>
+
+
+			<!-- <div class="listingLayoutSelector">
+				<ui:insert name="content_view_selector">
+													
+			<ui:include src="/incl/content_view_result_layout_selector.xhtml" />
+															
+				</ui:insert>										
+				</div>	
+				 -->
+	<ui:define name="body">
+		<div>
+			<ui:define name="content_view_selector">
+				<ui:include src="/incl/content_view_result_layout_selector.xhtml" />
+
+			</ui:define>
+
+
+		</div>
+	</ui:define>
+
+
+
+
+
+
+
+
+	<h:form>
+		<nxu:dataList var="threadEntry" value="#{documentThreadedComments}"
+			styleClass="commentsOutput" rowIndexVar="rowIndex">
+			<h:panelGroup rendered="#{documentThreadedComments.size > 0}"
+				layout="block" style="margin-left:#{threadEntry.depth*25}px;"
+				styleClass="#{nxu:test(rowIndex % 2 == 1, 'GreydataRowwOdd', 'GreydataRowEven')}">
+				
+				
+				<div valign="left">
+					<table width="100%" cellspacing="0" cellpadding="0" border="0">
+						<tr>
+							<td align="left" width="25%">
+								<div class="CDcommentAuthor">
+									<h:outputText value="#{nxu:userFullName(threadEntry.comment.comment.author)}" />
+								</div>
+							</td>
+							
+							<td align="left" width="55%">
+								<div class="CDcommentCreationDate">
+									<h:outputText value="#{threadEntry.comment.comment.creationDate}">
+										<f:convertDateTime pattern="#{nxu:basicDateAndTimeFormater()}" timeZone="#{timeZone}" />
+									</h:outputText>
+								</div>
+							</td>
+							
+							<td align="center" width="20%" rowspan="2">
+								<div class="CDcommentActions">
+									<h:commandLink value="#{messages['command.comments.reply']}"
+										action="#{commentManagerActions.beginComment}">
+										<f:param name="replyCommentId" value="#{threadEntry.comment.id}" />
+									</h:commandLink>
+									
+									<h:commandLink action="#{commentManagerActions.deleteComment}"
+										value="#{messages['command.delete']}"
+										rendered="#{threadEntry.comment.comment.author == commentManagerActions.principalName or commentManagerActions.principalIsAdmin}">
+										<f:param name="deleteCommentId" value="#{threadEntry.comment.id}" />
+									</h:commandLink>
+								</div>
+							</td>
+						</tr>
+						
+						<tr>
+							<td width="80%" colspan="2" align="left">
+								<div class="CDCommentsQuote">
+									<h:outputText value="#{threadEntry.comment.comment.text}" escape="false" />
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+
+				<f:subview id="createForm"
+					rendered="#{commentManagerActions.commentStarted
+          and threadEntry.comment.id==commentManagerActions.savedReplyCommentId }">
+					<ui:include src="/incl/create_comment_form.xhtml" />
+				</f:subview>
+
+
+			</h:panelGroup>
+		</nxu:dataList>
+	</h:form>
+</div>

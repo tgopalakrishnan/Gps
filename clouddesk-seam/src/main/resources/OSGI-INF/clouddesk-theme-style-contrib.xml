@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+
+<component name="com.sharplabs.clouddesk.theme.style">
+
+	<!-- Deploy after the default style registrations from Nuxeo CAP and Social 
+		Collab -->
+	<require>org.nuxeo.theme.nuxeo.default</require>
+	<require>org.nuxeo.social.collaboration.theme</require>
+
+	<extension target="org.nuxeo.theme.styling.service" point="styles">
+		
+		<style name="clouddesk.css">
+			<src>themes/css/clouddesk.css</src>
+		</style>
+		
+		<style name="tabs_content.css">
+			<src>themes/css/tabs_content.css</src>
+		</style>
+		
+		<style name="navigation">
+			<src>themes/css/navigation.css</src>
+		</style>
+		<style name="tooltips.css">
+			<src>themes/css/tooltips.css</src>
+		</style>
+		<style name="header">
+			<src>themes/css/header.css</src>
+		</style>
+		<style name="footer">
+			<src>themes/css/footer.css</src>
+		</style>
+		<style name="foldable_boxes.css">
+			<src>themes/css/foldable_boxes.css</src>
+		</style>
+		<style name="buttons_and_actions.css">
+			<src>themes/css/buttons_and_actions.css</src>
+		</style>
+
+		<application root="${org.nuxeo.ecm.contextPath}"
+			template-engine="jsf-facelets">
+
+			<view id="/cd_view_home.xhtml">
+				<theme>social-collaboration/dashboard</theme>
+			</view>
+			<view id="/others_docs_search_results.xhtml">
+				<theme>social-collaboration/dashboard</theme>
+			</view>			
+			<!-- <view id="/view_settings.xhtml"> <theme>userCenter/default</theme> 
+				</view> -->
+
+		</application>
+
+	</extension>
+
+</component>
