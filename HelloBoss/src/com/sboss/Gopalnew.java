@@ -3,7 +3,7 @@ package com.sboss;
 public class Gopalnew {
 
 	/**
-	 * @param args
+	 * @comment added to test push origin
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
